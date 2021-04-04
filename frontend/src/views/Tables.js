@@ -121,6 +121,92 @@ class Tables extends React.Component {
                 </CardBody>
               </Card>
             </Col>
+            <Col md="12">
+              <Card>
+                <CardHeader>
+                  <CardTitle tag="h4">TV-show Database</CardTitle>
+                </CardHeader>
+                <CardBody>
+                  <Table responsive>
+                    <thead className="text-primary">
+                      <tr>
+                        <th>TV-show Name</th>
+                        <th>Genre</th>
+                        <th>Actors</th>
+                        <th className="">Director</th>
+                        <th className="text-right">Rating</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>The Shawshank Redemption (1994)</td>
+                        <td>Thriller</td>
+                        <td>Tim Robbins, Morgan Freeman...</td>
+                        <td >Frank Darabont</td>
+                        <td className="text-right">8.7</td>
+
+                      </tr>
+                      <tr>
+                        <td>The Shawshank Redemption (1994)</td>
+                        <td>Thriller</td>
+                        <td>Tim Robbins, Morgan Freeman...</td>
+                        <td >Frank Darabont</td>
+                        <td className="text-right">8.7</td>
+
+                      </tr>
+                      <tr>
+                        <td>The Shawshank Redemption (1994)</td>
+                        <td>Thriller</td>
+                        <td>Tim Robbins, Morgan Freeman...</td>
+                        <td >Frank Darabont</td>
+                        <td className="text-right">8.7</td>
+
+                      </tr>
+                      <tr>
+                        <td>The Shawshank Redemption (1994)</td>
+                        <td>Thriller</td>
+                        <td>Tim Robbins, Morgan Freeman...</td>
+                        <td >Frank Darabont</td>
+                        <td className="text-right">8.7</td>
+
+                      </tr>
+                      <tr>
+                        <td>The Shawshank Redemption (1994)</td>
+                        <td>Thriller</td>
+                        <td>Tim Robbins, Morgan Freeman...</td>
+                        <td >Frank Darabont</td>
+                        <td className="text-right">8.7</td>
+
+                      </tr>
+                      <tr>
+                        <td>The Shawshank Redemption (1994)</td>
+                        <td>Thriller</td>
+                        <td>Tim Robbins, Morgan Freeman...</td>
+                        <td >Frank Darabont</td>
+                        <td className="text-right">8.7</td>
+
+                      </tr>
+                      <tr>
+                        <td>The Shawshank Redemption (1994)</td>
+                        <td>Thriller</td>
+                        <td>Tim Robbins, Morgan Freeman...</td>
+                        <td >Frank Darabont</td>
+                        <td className="text-right">8.7</td>
+
+                      </tr>
+                      <tr>
+                        <td>The Shawshank Redemption (1994)</td>
+                        <td>Thriller</td>
+                        <td>Tim Robbins, Morgan Freeman...</td>
+                        <td >Frank Darabont</td>
+                        <td className="text-right">8.7</td>
+
+                      </tr>
+                    </tbody>
+                  </Table>
+                </CardBody>
+              </Card>
+            </Col>
 
             <Col md="12">
               <Card className="card-plain">
