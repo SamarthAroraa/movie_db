@@ -89,7 +89,7 @@ const User = () => {
                       <FormGroup>
                         <label>Actor(s) [space separated]</label>
                         <Input key={mediaType}
-                          defaultValue={mediaType == "movie" ? ("Leonardo di Caprio,Cillian Murphy,Tom Hardy") : ("Steve Carell,John Krasinski,Jenna Fischer")}
+                          defaultValue={mediaType == "movie" ? ("Leonardo di Caprio, Cillian Murphy, Tom Hardy") : ("Steve Carell, John Krasinski, Jenna Fischer")}
 
                           placeholder="Comma separated actor names"
                           type="text"
