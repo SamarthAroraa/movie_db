@@ -2,7 +2,7 @@
   "name": "paper-dashboard-react",
   "version": "1.2.0",
   "private": true,
-  "homepage": "https://demos.creative-tim.com/paper-dashboard-react/#/dashboard",
+  "homepage": "",
   "dependencies": {
     "bootstrap": "4.5.0",
     "chart.js": "2.9.3",
