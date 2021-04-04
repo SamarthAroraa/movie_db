@@ -37,6 +37,7 @@ import {
 
 const User = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mediaType, setMediaType] = useState("movie");
   const toggle = () => setDropdownOpen(prevState => !prevState);
   return (
     <>
@@ -55,15 +56,16 @@ const User = () => {
                       Type
                       </DropdownToggle>
                     <DropdownMenu>
-                      <DropdownItem>Movie</DropdownItem>
-                      <DropdownItem>TV Show</DropdownItem>
+                      <DropdownItem onClick={() => { setMediaType("movie") }}>Movie</DropdownItem>
+                      <DropdownItem onClick={() => { setMediaType("tv") }} >TV Show</DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
 
                   <Row>
                     <Col className="pr-1" md="6">
                       <FormGroup>
-                        <label>Movie Name</label>
+                        {mediaType == "movie" ? (<label>Movie Name</label>) : (<label>TV-show Name</label>)}
+
                         <Input
                           defaultValue="Inception"
                           placeholder="Movie Name"
