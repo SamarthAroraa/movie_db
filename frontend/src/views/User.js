@@ -66,9 +66,9 @@ const User = () => {
                       <FormGroup>
                         {mediaType == "movie" ? (<label>Movie Name</label>) : (<label>TV-show Name</label>)}
 
-                        <Input
-                          defaultValue="Inception"
-                          placeholder="Movie Name"
+                        <Input key={mediaType}
+                          defaultValue={mediaType == "movie" ? ("Inception") : ("The Office")}
+                          placeholder={mediaType == "movie" ? ("Movie Name") : ("TV-show name")}
                           type="text"
                         />
                       </FormGroup>
@@ -76,8 +76,8 @@ const User = () => {
                     <Col className="pl-1" md="6">
                       <FormGroup>
                         <label>Genre</label>
-                        <Input
-                          defaultValue="Psycho-Thriller"
+                        <Input key={mediaType}
+                          defaultValue={mediaType == "movie" ? ("Thriller") : ("Sitcom")}
                           placeholder="Genre"
                           type="text"
                         />
@@ -88,8 +88,9 @@ const User = () => {
                     <Col md="12">
                       <FormGroup>
                         <label>Actor(s) [space separated]</label>
-                        <Input
-                          defaultValue="Leonardo di Caprio,Cillian Murphy,Tom Hardy"
+                        <Input key={mediaType}
+                          defaultValue={mediaType == "movie" ? ("Leonardo di Caprio,Cillian Murphy,Tom Hardy") : ("Steve Carell,John Krasinski,Jenna Fischer")}
+
                           placeholder="Comma separated actor names"
                           type="text"
                         />
@@ -100,8 +101,8 @@ const User = () => {
                     <Col md="12">
                       <FormGroup>
                         <label>Director(s) [space separated]</label>
-                        <Input
-                          defaultValue="Christopher Nolan"
+                        <Input key={mediaType}
+                          defaultValue={mediaType == "movie" ? ("Christopher Nolan") : ("Greg Daniels")}
                           placeholder="Comma separated director names"
                           type="text"
                         />
