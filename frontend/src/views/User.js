@@ -17,6 +17,7 @@
 
 */
 import React, { useState } from "react";
+import axios from 'axios';
 
 // reactstrap components
 import {
@@ -38,8 +39,63 @@ import {
 const User = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mediaType, setMediaType] = useState("movie");
-  const handleSubmission = ()=>{
+  const [state, setState] = useState({
+    media_name:"",
+    actors:"",
+    director:"",
+    genre: ""
 
+  })
+  function capitalize(input) {  
+    var words = input.split(' ');  
+    var CapitalizedWords = [];  
+    words.forEach(element => {
+      if(element!=''){ 
+      element = element.trim();
+      element = element.toLowerCase();
+        CapitalizedWords.push(element[0].toUpperCase() + element.slice(1, element.length));  
+      }
+    });  
+    return CapitalizedWords.join(' ');  
+}  
+  const handleSubmission = async (e)=>{
+    e.preventDefault();
+
+    //passable will be the object containing information we'll pass on to our backend 
+    let passable = state;
+    passable = {...state, type:mediaType }
+    let actor_string = state.actors;
+    if(actor_string.charAt(actor_string.length-1)==','){
+      actor_string= actor_string.slice(0, -1)
+      console.log(actor_string)
+    }
+    let actor_array = actor_string.split(",");
+    for(let i= 0 ; i <actor_array.length; i ++){
+      actor_array[i] = capitalize(actor_array[i]);
+    }
+    passable.actors = actor_array;
+    Object.keys(passable).map((key, idx)=> {if(key!='actors'){passable[key] = capitalize(passable[key])}})
+    passable.type=mediaType.toLocaleLowerCase();
+    console.log(passable);
+
+    //make a backend function to process all the passed values
+    
+    
+    var config = {
+      
+      url: 'http://localhost:1337/datapoint/new',
+    };
+    let res = await axios.post(config.url, passable);
+
+    
+  }
+
+  function handleChange(evt) {
+    const value = evt.target.value;
+    setState({
+      ...state,
+      [evt.target.name]: value
+    });
   }
   const toggle = () => setDropdownOpen(prevState => !prevState);
   return (
@@ -70,8 +126,10 @@ const User = () => {
                         {mediaType == "movie" ? (<label>Movie Name</label>) : (<label>TV-show Name</label>)}
 
                         <Input key={mediaType}
-                          defaultValue={mediaType == "movie" ? ("Inception") : ("The Office")}
-                          placeholder={mediaType == "movie" ? ("Movie Name") : ("TV-show name")}
+                          placeholder={mediaType == "movie" ? ("Inception") : ("The Office")}
+                          value={state.media_name}
+                          name="media_name"
+                          onChange={handleChange}
                           type="text"
                         />
                       </FormGroup>
@@ -80,8 +138,10 @@ const User = () => {
                       <FormGroup>
                         <label>Genre [only one]</label>
                         <Input key={mediaType}
-                          defaultValue={mediaType == "movie" ? ("Thriller") : ("Sitcom")}
-                          placeholder="Genre"
+                          placeholder={mediaType == "movie" ? ("Thriller") : ("Sitcom")}
+                          value={state.genre}
+                          name="genre"
+                          onChange={handleChange}
                           type="text"
                         />
                       </FormGroup>
@@ -92,9 +152,10 @@ const User = () => {
                       <FormGroup>
                         <label>Actor(s) [comma separated]</label>
                         <Input key={mediaType}
-                          defaultValue={mediaType == "movie" ? ("Leonardo di Caprio, Cillian Murphy, Tom Hardy") : ("Steve Carell, John Krasinski, Jenna Fischer")}
-
-                          placeholder="Comma separated actor names"
+                          placeholder={mediaType == "movie" ? ("Leonardo di Caprio, Cillian Murphy, Tom Hardy") : ("Steve Carell, John Krasinski, Jenna Fischer")}
+                          value={state.actors}
+                          name="actors"
+                          onChange={handleChange}
                           type="text"
                         />
                       </FormGroup>
@@ -105,8 +166,10 @@ const User = () => {
                       <FormGroup>
                         <label>Director [only one]</label>
                         <Input key={mediaType}
-                          defaultValue={mediaType == "movie" ? ("Christopher Nolan") : ("Greg Daniels")}
-                          placeholder="Comma separated director names"
+                          placeholder={mediaType == "movie" ? ("Christopher Nolan") : ("Greg Daniels")}
+                          name="director"
+                          value={state.director}
+                          onChange={handleChange}
                           type="text"
                         />
                       </FormGroup>
