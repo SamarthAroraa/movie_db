@@ -45,17 +45,36 @@ const User = () => {
     genre: ""
 
   })
+  function capitalize(input) {  
+    var words = input.split(' ');  
+    var CapitalizedWords = [];  
+    words.forEach(element => {
+      if(element!=''){ 
+      element = element.trim();
+      element = element.toLowerCase();
+        CapitalizedWords.push(element[0].toUpperCase() + element.slice(1, element.length));  
+      }
+    });  
+    return CapitalizedWords.join(' ');  
+}  
   const handleSubmission = (e)=>{
     e.preventDefault();
 
     //passable will be the object containing information we'll pass on to our backend 
     let passable = state;
     passable = {...state, type:mediaType }
-    let actor_array = state.actors.split(",");
+    let actor_string = state.actors;
+    if(actor_string.charAt(actor_string.length-1)==','){
+      actor_string= actor_string.slice(0, -1)
+      console.log(actor_string)
+    }
+    let actor_array = actor_string.split(",");
     for(let i= 0 ; i <actor_array.length; i ++){
-      actor_array[i] = actor_array[i].trim();
+      actor_array[i] = capitalize(actor_array[i]);
+      
     }
     passable.actors = actor_array;
+    Object.keys(passable).map((key, idx)=> {if(key!='actors'){passable[key] = capitalize(passable[key])}})
     console.log(passable);
     //make a backend function to process all the passed values
 
