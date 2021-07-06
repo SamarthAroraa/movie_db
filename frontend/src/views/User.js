@@ -38,8 +38,34 @@ import {
 const User = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mediaType, setMediaType] = useState("movie");
-  const handleSubmission = ()=>{
+  const [state, setState] = useState({
+    media_name:"",
+    actors:"",
+    director:"",
+    genre: ""
 
+  })
+  const handleSubmission = (e)=>{
+    e.preventDefault();
+
+    //passable will be the object containing information we'll pass on to our backend 
+    let passable = state;
+    passable = {...state, type:mediaType }
+    let actor_array = state.actors.split(",");
+    for(let i= 0 ; i <actor_array.length; i ++){
+      actor_array[i] = actor_array[i].trim();
+    }
+    passable.actors = actor_array;
+    console.log(passable);
+    //make a backend function to process all the passed values
+
+  }
+  function handleChange(evt) {
+    const value = evt.target.value;
+    setState({
+      ...state,
+      [evt.target.name]: value
+    });
   }
   const toggle = () => setDropdownOpen(prevState => !prevState);
   return (
@@ -70,8 +96,10 @@ const User = () => {
                         {mediaType == "movie" ? (<label>Movie Name</label>) : (<label>TV-show Name</label>)}
 
                         <Input key={mediaType}
-                          defaultValue={mediaType == "movie" ? ("Inception") : ("The Office")}
-                          placeholder={mediaType == "movie" ? ("Movie Name") : ("TV-show name")}
+                          placeholder={mediaType == "movie" ? ("Inception") : ("The Office")}
+                          value={state.media_name}
+                          name="media_name"
+                          onChange={handleChange}
                           type="text"
                         />
                       </FormGroup>
@@ -80,8 +108,10 @@ const User = () => {
                       <FormGroup>
                         <label>Genre [only one]</label>
                         <Input key={mediaType}
-                          defaultValue={mediaType == "movie" ? ("Thriller") : ("Sitcom")}
-                          placeholder="Genre"
+                          placeholder={mediaType == "movie" ? ("Thriller") : ("Sitcom")}
+                          value={state.genre}
+                          name="genre"
+                          onChange={handleChange}
                           type="text"
                         />
                       </FormGroup>
@@ -92,9 +122,10 @@ const User = () => {
                       <FormGroup>
                         <label>Actor(s) [comma separated]</label>
                         <Input key={mediaType}
-                          defaultValue={mediaType == "movie" ? ("Leonardo di Caprio, Cillian Murphy, Tom Hardy") : ("Steve Carell, John Krasinski, Jenna Fischer")}
-
-                          placeholder="Comma separated actor names"
+                          placeholder={mediaType == "movie" ? ("Leonardo di Caprio, Cillian Murphy, Tom Hardy") : ("Steve Carell, John Krasinski, Jenna Fischer")}
+                          value={state.actors}
+                          name="actors"
+                          onChange={handleChange}
                           type="text"
                         />
                       </FormGroup>
@@ -105,8 +136,10 @@ const User = () => {
                       <FormGroup>
                         <label>Director [only one]</label>
                         <Input key={mediaType}
-                          defaultValue={mediaType == "movie" ? ("Christopher Nolan") : ("Greg Daniels")}
-                          placeholder="Comma separated director names"
+                          placeholder={mediaType == "movie" ? ("Christopher Nolan") : ("Greg Daniels")}
+                          name="director"
+                          value={state.director}
+                          onChange={handleChange}
                           type="text"
                         />
                       </FormGroup>
