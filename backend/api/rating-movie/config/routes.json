@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/rating-movies",
+      "handler": "rating-movie.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/rating-movies/count",
+      "handler": "rating-movie.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/rating-movies/:id",
+      "handler": "rating-movie.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/rating-movies",
+      "handler": "rating-movie.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/rating-movies/:id",
+      "handler": "rating-movie.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/rating-movies/:id",
+      "handler": "rating-movie.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

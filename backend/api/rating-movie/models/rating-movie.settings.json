@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rating_movies",
+  "info": {
+    "name": "Rating_movie"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "stars": {
+      "type": "integer"
+    },
+    "custom_user": {
+      "model": "custom-user",
+      "via": "rating_movies"
+    },
+    "movie": {
+      "model": "movie",
+      "via": "rating_movies"
+    }
+  }
+}

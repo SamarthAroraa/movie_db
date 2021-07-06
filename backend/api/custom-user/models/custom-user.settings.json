@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "custom_users",
+  "info": {
+    "name": "Custom_User"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "f_name": {
+      "type": "string"
+    },
+    "m_name": {
+      "type": "string"
+    },
+    "l_name": {
+      "type": "string"
+    },
+    "ratings": {
+      "via": "custom_user",
+      "collection": "rating"
+    },
+    "rating_movies": {
+      "via": "custom_user",
+      "collection": "rating-movie"
+    }
+  }
+}

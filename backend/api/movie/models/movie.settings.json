@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "movies",
+  "info": {
+    "name": "Movie"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "genre": {
+      "model": "genre",
+      "via": "movies"
+    },
+    "director": {
+      "model": "director",
+      "via": "movies"
+    },
+    "rating_movies": {
+      "via": "movie",
+      "collection": "rating-movie"
+    },
+    "actors": {
+      "via": "movies",
+      "collection": "actor"
+    }
+  }
+}

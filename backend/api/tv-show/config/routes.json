@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/tv-shows",
+      "handler": "tv-show.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/tv-shows/count",
+      "handler": "tv-show.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/tv-shows/:id",
+      "handler": "tv-show.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/tv-shows",
+      "handler": "tv-show.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/tv-shows/:id",
+      "handler": "tv-show.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/tv-shows/:id",
+      "handler": "tv-show.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

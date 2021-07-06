@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "genres",
+  "info": {
+    "name": "Genre"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "tv_shows": {
+      "via": "genre",
+      "collection": "tv-show"
+    },
+    "movies": {
+      "via": "genre",
+      "collection": "movie"
+    }
+  }
+}

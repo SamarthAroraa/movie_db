@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "directors",
+  "info": {
+    "name": "Director"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "tv_shows": {
+      "via": "director",
+      "collection": "tv-show"
+    },
+    "movies": {
+      "via": "director",
+      "collection": "movie"
+    }
+  }
+}

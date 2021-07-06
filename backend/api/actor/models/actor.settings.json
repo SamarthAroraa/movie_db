@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "actors",
+  "info": {
+    "name": "Actor",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "movies": {
+      "collection": "movie",
+      "via": "actors",
+      "dominant": true
+    },
+    "tv_shows": {
+      "collection": "tv-show",
+      "via": "actors",
+      "dominant": true
+    }
+  }
+}

@@ -38,6 +38,9 @@ import {
 const User = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [mediaType, setMediaType] = useState("movie");
+  const handleSubmission = ()=>{
+
+  }
   const toggle = () => setDropdownOpen(prevState => !prevState);
   return (
     <>
@@ -75,7 +78,7 @@ const User = () => {
                     </Col>
                     <Col className="pl-1" md="6">
                       <FormGroup>
-                        <label>Genre</label>
+                        <label>Genre [only one]</label>
                         <Input key={mediaType}
                           defaultValue={mediaType == "movie" ? ("Thriller") : ("Sitcom")}
                           placeholder="Genre"
@@ -87,7 +90,7 @@ const User = () => {
                   <Row>
                     <Col md="12">
                       <FormGroup>
-                        <label>Actor(s) [space separated]</label>
+                        <label>Actor(s) [comma separated]</label>
                         <Input key={mediaType}
                           defaultValue={mediaType == "movie" ? ("Leonardo di Caprio, Cillian Murphy, Tom Hardy") : ("Steve Carell, John Krasinski, Jenna Fischer")}
 
@@ -100,7 +103,7 @@ const User = () => {
                   <Row>
                     <Col md="12">
                       <FormGroup>
-                        <label>Director(s) [space separated]</label>
+                        <label>Director [only one]</label>
                         <Input key={mediaType}
                           defaultValue={mediaType == "movie" ? ("Christopher Nolan") : ("Greg Daniels")}
                           placeholder="Comma separated director names"
@@ -116,6 +119,7 @@ const User = () => {
                         className="btn-round"
                         color="primary"
                         type="submit"
+                        onClick={handleSubmission}
                       >
                         Add Data point
                         </Button>

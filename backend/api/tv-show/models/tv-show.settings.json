@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tv_shows",
+  "info": {
+    "name": "TV_show"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "genre": {
+      "model": "genre",
+      "via": "tv_shows"
+    },
+    "director": {
+      "model": "director",
+      "via": "tv_shows"
+    },
+    "rating_tvs": {
+      "via": "tv_show",
+      "collection": "rating"
+    },
+    "actors": {
+      "via": "tv_shows",
+      "collection": "actor"
+    }
+  }
+}
