@@ -17,6 +17,7 @@
 
 */
 import React, { useState } from "react";
+import axios from 'axios';
 
 // reactstrap components
 import {
@@ -57,7 +58,7 @@ const User = () => {
     });  
     return CapitalizedWords.join(' ');  
 }  
-  const handleSubmission = (e)=>{
+  const handleSubmission = async (e)=>{
     e.preventDefault();
 
     //passable will be the object containing information we'll pass on to our backend 
@@ -71,14 +72,24 @@ const User = () => {
     let actor_array = actor_string.split(",");
     for(let i= 0 ; i <actor_array.length; i ++){
       actor_array[i] = capitalize(actor_array[i]);
-      
     }
     passable.actors = actor_array;
     Object.keys(passable).map((key, idx)=> {if(key!='actors'){passable[key] = capitalize(passable[key])}})
+    passable.type=mediaType.toLocaleLowerCase();
     console.log(passable);
-    //make a backend function to process all the passed values
 
+    //make a backend function to process all the passed values
+    
+    
+    var config = {
+      
+      url: 'http://localhost:1337/datapoint/new',
+    };
+    let res = await axios.post(config.url, passable);
+
+    
   }
+
   function handleChange(evt) {
     const value = evt.target.value;
     setState({
