@@ -22,13 +22,13 @@
       "model": "director",
       "via": "tv_shows"
     },
-    "rating_tvs": {
-      "via": "tv_show",
-      "collection": "rating"
-    },
     "actors": {
       "via": "tv_shows",
       "collection": "actor"
+    },
+    "ratings": {
+      "via": "tv_show",
+      "collection": "rating-movie"
     }
   }
 }
