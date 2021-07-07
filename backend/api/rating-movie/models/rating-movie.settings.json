@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "rating_movies",
   "info": {
-    "name": "Rating_movie"
+    "name": "Rating",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -18,9 +19,13 @@
       "model": "custom-user",
       "via": "rating_movies"
     },
+    "tv_show": {
+      "model": "tv-show",
+      "via": "ratings"
+    },
     "movie": {
       "model": "movie",
-      "via": "rating_movies"
+      "via": "ratings"
     }
   }
 }

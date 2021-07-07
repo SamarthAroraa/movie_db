@@ -38,13 +38,21 @@ import {
 
 const User = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownOpenRating, setDropdownOpenRating] = useState(false);
   const [mediaType, setMediaType] = useState("movie");
+  const [disabled, setDisabled] = useState(false);
+  const [disabledRating, setDisabledRating] = useState(false);
+  const [mediaTypeRating, setMediaTypeRating] = useState("movies");
   const [state, setState] = useState({
     media_name:"",
     actors:"",
     director:"",
     genre: ""
 
+  })
+  const [state_rating, setStateRating] = useState({
+    media_name:"",
+    rating:""
   })
   function capitalize(input) {  
     var words = input.split(' ');  
@@ -60,7 +68,7 @@ const User = () => {
 }  
   const handleSubmission = async (e)=>{
     e.preventDefault();
-
+    setDisabled(true);
     //passable will be the object containing information we'll pass on to our backend 
     let passable = state;
     passable = {...state, type:mediaType }
@@ -86,10 +94,36 @@ const User = () => {
       url: 'http://localhost:1337/datapoint/new',
     };
     let res = await axios.post(config.url, passable);
-
+    setDisabled(false)
     
   }
+  const handleSubmissionRating = async (e) => {
+    e.preventDefault();
+    setDisabledRating(true);
 
+    let media = await (await axios.get('http://localhost:1337/'+ mediaTypeRating + '?name=' + state_rating.media_name)).data
+    if(media.length==1){
+      let rating_obj = {}
+      rating_obj.stars = state_rating.rating ? parseInt(state_rating.rating) : 0;
+      rating_obj.custom_user = '1';
+      rating_obj.movie = '';
+      rating_obj.tv_show = '';
+      if(mediaTypeRating=="tv-shows"){
+        rating_obj.tv_show = media[0].id;
+      }else if(mediaTypeRating=="movies"){
+        rating_obj.movie = media[0].id;
+      }else{
+        console.log(mediaTypeRating)
+      }
+
+      let rating = await axios.post('http://localhost:1337/rating-movies', rating_obj)
+      console.log(rating)
+      setDisabledRating(false)
+    }else{
+      console.log(media);
+    }
+
+  }
   function handleChange(evt) {
     const value = evt.target.value;
     setState({
@@ -97,7 +131,15 @@ const User = () => {
       [evt.target.name]: value
     });
   }
+  function handleChangeRating(evt) {
+    const value = evt.target.value;
+    setStateRating({
+      ...state_rating,
+      [evt.target.name]: value
+    });
+  }
   const toggle = () => setDropdownOpen(prevState => !prevState);
+  const toggleRating = () => setDropdownOpenRating(prevState => !prevState);
   return (
     <>
       <div className="content">
@@ -183,11 +225,79 @@ const User = () => {
                         color="primary"
                         type="submit"
                         onClick={handleSubmission}
+                        disabled={disabled}
                       >
                         Add Data point
                         </Button>
                     </div>
                   </Row>
+                </Form>
+              </CardBody>
+            </Card>
+          </Col>
+
+
+
+          {/* Add  a rating  */}
+          <Col md="12">
+            <Card className="card-user">
+              <CardHeader>
+                <CardTitle tag="h5">Add a Rating</CardTitle>
+              </CardHeader>
+              <CardBody>
+                <Form>
+                  <Dropdown isOpen={dropdownOpenRating} toggle={toggleRating}>
+                    <DropdownToggle caret>
+                      Type
+                      </DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem onClick={() => { setMediaTypeRating("movies") }}>Movie</DropdownItem>
+                      <DropdownItem onClick={() => { setMediaTypeRating("tv-shows") }} >TV Show</DropdownItem>
+                    </DropdownMenu>
+                  </Dropdown>
+
+                  <Row>
+                    <Col className="pr-1" md="6">
+                      <FormGroup>
+                        {mediaTypeRating == "movies" ? (<label>Movie Name</label>) : (<label>TV-show Name</label>)}
+
+                        <Input key={mediaTypeRating}
+                          placeholder={mediaTypeRating == "movies" ? ("Inception") : ("The Office")}
+                          value={state_rating.media_name}
+                          name="media_name"
+                          onChange={handleChangeRating}
+                          type="text"
+                        />
+                      </FormGroup>
+                    </Col>
+                    <Col className="pl-1" md="6">
+                      <FormGroup>
+                        <label>Rating [Out of 5]</label>
+                        <Input key={mediaTypeRating}
+                          placeholder="A number from 1 to 5"
+                          value={state_rating.rating}
+                          name="rating"
+                          onChange={handleChangeRating}
+                          type="text"
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+
+                  <Row>
+                    <div className="update ml-auto mr-auto">
+                      <Button
+                        className="btn-round"
+                        color="primary"
+                        type="submit"
+                        onClick={handleSubmissionRating}
+                        disabled = {disabledRating}
+                      >
+                        Add Rating
+                        </Button>
+                    </div>
+                  </Row>
+                 
                 </Form>
               </CardBody>
             </Card>

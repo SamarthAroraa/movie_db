@@ -35,7 +35,7 @@ var routes = [
   },
   {
     path: "/user-page",
-    name: "Add a datapoint",
+    name: "Add",
     icon: "nc-icon nc-simple-add",
     component: UserPage,
     layout: "/admin",

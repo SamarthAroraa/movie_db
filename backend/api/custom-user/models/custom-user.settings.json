@@ -20,10 +20,6 @@
     "l_name": {
       "type": "string"
     },
-    "ratings": {
-      "via": "custom_user",
-      "collection": "rating"
-    },
     "rating_movies": {
       "via": "custom_user",
       "collection": "rating-movie"

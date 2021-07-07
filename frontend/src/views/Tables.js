@@ -56,9 +56,16 @@ const Tables =(props) => {
         }
         let actor_string = actor_array.join(', ');
         obj.actors = actor_string;
+        let sum_ratings = 0.0 ;
+        for(let j = 0 ; j < this_movies[i].ratings.length; j++){
+          sum_ratings+=parseFloat(this_movies[i].ratings[j].stars);
+        }
+        if(sum_ratings)
+        obj.rating = (sum_ratings/this_movies[i].ratings.length).toFixed(2);
         update_movies.push(obj);
 
       }
+      console.log(update_movies)
       setMovies(update_movies);
 
 
@@ -75,6 +82,12 @@ const Tables =(props) => {
         }
         let actor_string = actor_array.join(', ');
         obj.actors = actor_string;
+        let sum_ratings = 0.0 ;
+        for(let j = 0 ; j < this_tv[i].ratings.length; j++){
+          sum_ratings+=parseFloat(this_tv[i].ratings[j].stars);
+        }
+        if(sum_ratings)
+        obj.rating = (sum_ratings/this_tv[i].ratings.length).toFixed(2);
         update_tv.push(obj);
 
       }
