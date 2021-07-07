@@ -117,11 +117,11 @@ const User = () => {
 
       let rating = await axios.post(process.env.REACT_APP_API_URI+'rating-movies', rating_obj)
       console.log(rating)
-      setDisabledRating(false)
+      
     }else{
       console.log(media);
     }
-
+    setDisabledRating(false)
   }
   function handleChange(evt) {
     const value = evt.target.value;
