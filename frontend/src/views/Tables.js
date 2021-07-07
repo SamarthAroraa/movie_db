@@ -37,11 +37,11 @@ const Tables =(props) => {
     const [genres, setGenres] = useState([]);
 
     useEffect(async ()=>{
-      let this_movies = await (await axios.get('http://localhost:1337/movies')).data;
-      let this_tv = await (await axios.get('http://localhost:1337/tv-shows')).data;
-      let this_actors = await (await axios.get('http://localhost:1337/actors')).data;
-      let this_directors = await (await axios.get('http://localhost:1337/directors')).data;
-      let this_genre = await (await axios.get('http://localhost:1337/genres')).data;
+      let this_movies = await (await axios.get(process.env.REACT_APP_API_URI+'movies')).data;
+      let this_tv = await (await axios.get(process.env.REACT_APP_API_URI+'tv-shows')).data;
+      let this_actors = await (await axios.get(process.env.REACT_APP_API_URI+'actors')).data;
+      let this_directors = await (await axios.get(process.env.REACT_APP_API_URI+'directors')).data;
+      let this_genre = await (await axios.get(process.env.REACT_APP_API_URI+'genres')).data;
       
       //make a movies array of objects
       let update_movies = [];

@@ -91,7 +91,7 @@ const User = () => {
     
     var config = {
       
-      url: 'http://localhost:1337/datapoint/new',
+      url: process.env.REACT_APP_API_URI+'datapoint/new',
     };
     let res = await axios.post(config.url, passable);
     setDisabled(false)
@@ -101,7 +101,7 @@ const User = () => {
     e.preventDefault();
     setDisabledRating(true);
 
-    let media = await (await axios.get('http://localhost:1337/'+ mediaTypeRating + '?name=' + state_rating.media_name)).data
+    let media = await (await axios.get(process.env.REACT_APP_API_URI+ mediaTypeRating + '?name=' + state_rating.media_name)).data
     if(media.length==1){
       let rating_obj = {}
       rating_obj.stars = state_rating.rating ? parseInt(state_rating.rating) : 0;
@@ -116,7 +116,7 @@ const User = () => {
         console.log(mediaTypeRating)
       }
 
-      let rating = await axios.post('http://localhost:1337/rating-movies', rating_obj)
+      let rating = await axios.post(process.env.REACT_APP_API_URI+'rating-movies', rating_obj)
       console.log(rating)
       setDisabledRating(false)
     }else{
