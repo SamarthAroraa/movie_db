@@ -106,8 +106,7 @@ const User = () => {
       let rating_obj = {}
       rating_obj.stars = state_rating.rating ? parseInt(state_rating.rating) : 0;
       rating_obj.custom_user = '1';
-      rating_obj.movie = '';
-      rating_obj.tv_show = '';
+
       if(mediaTypeRating=="tv-shows"){
         rating_obj.tv_show = media[0].id;
       }else if(mediaTypeRating=="movies"){
