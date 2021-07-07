@@ -101,7 +101,7 @@ const User = () => {
     e.preventDefault();
     setDisabledRating(true);
 
-    let media = await (await axios.get(process.env.REACT_APP_API_URI+ mediaTypeRating + '?name=' + state_rating.media_name)).data
+    let media = await (await axios.get(process.env.REACT_APP_API_URI+ mediaTypeRating + '?name=' + capitalize(state_rating.media_name))).data
     if(media.length==1){
       let rating_obj = {}
       rating_obj.stars = state_rating.rating ? parseInt(state_rating.rating) : 0;
