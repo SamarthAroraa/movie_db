@@ -194,7 +194,7 @@ const Tables =(props) => {
                         <th>Genre</th>
                         <th>Actors</th>
                         <th className="">Director</th>
-                        <th className="text-right">Rating</th>
+                        <th className="text-right">Rating[out of 5]</th>
                       </tr>
                     </thead>
                     <tbody >
@@ -230,7 +230,7 @@ const Tables =(props) => {
                         <th>Genre</th>
                         <th>Actors</th>
                         <th className="">Director</th>
-                        <th className="text-right">Rating</th>
+                        <th className="text-right">Rating[out of 5]</th>
                       </tr>
                     </thead>
                     <tbody>
