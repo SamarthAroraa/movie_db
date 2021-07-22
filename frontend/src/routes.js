@@ -24,6 +24,7 @@ import TableList from "views/Tables.js";
 import Maps from "views/Map.js";
 import UserPage from "views/User.js";
 import UpgradeToPro from "views/Upgrade.js";
+import DocumentationPage from 'views/DocumentationPage.js';
 
 var routes = [
   {
@@ -38,6 +39,13 @@ var routes = [
     name: "Add",
     icon: "nc-icon nc-simple-add",
     component: UserPage,
+    layout: "/admin",
+  },
+  {
+    path: "/documentation",
+    name: "Documentation",
+    icon: "nc-icon nc-paper",
+    component: DocumentationPage,
     layout: "/admin",
   },
 
